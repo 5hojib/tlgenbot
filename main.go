@@ -7,15 +7,13 @@ import (
 	"TLExtractor/consts"
 	"TLExtractor/environment"
 	"TLExtractor/github"
+	"TLExtractor/ios"
 	"TLExtractor/java/jadx"
-	"TLExtractor/services"
 	"TLExtractor/telegram/bot"
 	"TLExtractor/telegram/scheme"
 	schemeTypes "TLExtractor/telegram/scheme/types"
 	"TLExtractor/telegram/telegraph"
-	"TLExtractor/tui"
 	"TLExtractor/utils"
-	"TLExtractor/utils/package_manager"
 	"fmt"
 	"github.com/GoBotApiOfficial/gobotapi"
 	"github.com/GoBotApiOfficial/gobotapi/filters"
@@ -27,9 +25,17 @@ import (
 )
 
 func main() {
-	tui.Run()
-	package_manager.CheckPackages()
-	services.Run(run)
+	//tui.Run()
+	//package_manager.CheckPackages()
+	//services.Run(run)
+	file, err := ios.Decompile()
+	if err != nil {
+		return
+	}
+	_, err = ios.ExtractScheme(file)
+	if err != nil {
+		gologging.Fatal(err)
+	}
 }
 
 func run() {

@@ -32,6 +32,7 @@ const (
 	UpdateMessageRate  = time.Second * 3
 	CheckInterval      = time.Second * 1
 	MinTermWidth       = 45
+	IOSMtProtoPath     = "Payload/Telegram.app/Frameworks/TelegramCoreFramework.framework/TelegramCoreFramework"
 )
 
 // Github
